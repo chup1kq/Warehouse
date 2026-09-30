@@ -1,5 +1,6 @@
 package db.warehouse.domain.entity;
 
+import db.warehouse.api.dto.ProductDto;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,16 @@ public class Product {
     private String description;
     private BigDecimal price = BigDecimal.ZERO;
     private int quantity = 0;
+
+    public static ProductDto toDto(Product product) {
+        return new ProductDto(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getQuantity()
+        );
+    }
 
     @Override
     public boolean equals(Object o) {
