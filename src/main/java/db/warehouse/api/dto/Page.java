@@ -20,15 +20,14 @@ public class Page<T> {
     public static <T> Page<T> of(List<T> content,
                                  int number,
                                  int size,
-                                 int totalElements,
-                                 int totalPages
+                                 int totalElements
     ) {
         return Page.<T>builder()
                 .content(content)
                 .number(number)
                 .size(size)
                 .totalElements(totalElements)
-                .totalPages(totalPages)
+                .totalPages((int) Math.ceil((double) totalElements / size))
                 .build();
     }
 }
